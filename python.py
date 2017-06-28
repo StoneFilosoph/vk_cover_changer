@@ -1,7 +1,9 @@
 import vk_api
+from PIL import Image
 
 
 def main():
+
 
 
     login, password = 'login', 'pass'
@@ -18,8 +20,8 @@ def main():
     upload = vk_api.VkUpload(vk_session)
     cover = upload.group_cover('gurren.jpg', 58907644)
 
-    
-    """group cover changer  method for vk_api method upload"""
+
+    """group cover changer  method for vk_api class VkUpload"""
     # def group_cover(self, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
     #     values = {}
     #
@@ -45,7 +47,13 @@ def main():
     #     return response
 
 
+def image_processor():
+    image1 = Image.new('RGB',(500, 500))
+    image2 = Image.new('RGB', (100, 100), 156)
+    image1.paste(image2)
+    image1.show()
 
 
 if __name__ == '__main__':
-    main()
+    image_processor()
+    # main()
