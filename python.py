@@ -4,7 +4,7 @@ import vk_api
 def main():
     """ Пример загрузки фото """
 
-    login, password = 'podsosnowmonster@bk.ru', 'www314159vk'
+    login, password = 'login', 'pass'
     vk_session = vk_api.VkApi(login, password)
 
     try:
