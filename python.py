@@ -20,6 +20,7 @@ def main():
     upload = vk_api.VkUpload(vk_session)
     cover = upload.group_cover('gurren.jpg', 58907644)
 
+    ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
 
     """group cover changer  method for vk_api class VkUpload"""
     # def group_cover(self, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
