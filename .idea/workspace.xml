@@ -15,12 +15,19 @@
       <file leaf-file-name="python.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/python.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-              <folding>
-                <element signature="e#1189#1785#0" expanded="false" />
-                <element signature="e#1822#1865#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="318">
+              <caret line="20" column="4" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="upload.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/python3.5.3/Lib/site-packages/vk_api/upload.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="714">
+              <caret line="264" column="23" lean-forward="true" selection-start-line="242" selection-start-column="4" selection-end-line="264" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -40,6 +47,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="C:/python3.5.3/Lib/site-packages/vk_api/upload.py" />
         <option value="$PROJECT_DIR$/python.py" />
       </list>
     </option>
@@ -271,10 +279,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1189#1785#0" expanded="false" />
-            <element signature="e#1822#1865#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -282,10 +287,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1189#1785#0" expanded="false" />
-            <element signature="e#1822#1865#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -303,14 +305,19 @@
     <entry file="file://C:/Program Files/Python35/Lib/site-packages/requests/sessions.py" />
     <entry file="file://C:/Program Files/Python35/Lib/site-packages/vk_api/upload.py" />
     <entry file="file://C:/Program Files/Python35/Lib/site-packages/vk_api/tools.py" />
+    <entry file="file://C:/python3.5.3/Lib/site-packages/vk_api/upload.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="264" column="23" lean-forward="true" selection-start-line="242" selection-start-column="4" selection-end-line="264" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/python.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding>
-            <element signature="e#1189#1785#0" expanded="false" />
-            <element signature="e#1822#1865#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="318">
+          <caret line="20" column="4" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

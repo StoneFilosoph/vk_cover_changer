@@ -2,7 +2,7 @@ import vk_api
 
 
 def main():
-    """ Пример загрузки фото """
+
 
     login, password = 'login', 'pass'
     vk_session = vk_api.VkApi(login, password)
@@ -15,60 +15,36 @@ def main():
 
     """ В VkUpload реализованы методы загрузки файлов в ВК
     """
-
-    # upload = vk_api.VkUpload(vk_session)
-    #
-    # photo = upload.photo(  # Подставьте свои данные
-    #     'gurren.jpg',
-    #     album_id=98457962
-    # )
-    #
-    # vk_photo_url = 'https://vk.com/photo{}_{}'.format(
-    #     photo[0]['owner_id'], photo[0]['id']
-    # )
-    # print(photo, '\nLink: ', vk_photo_url)
-    request = {'group_id': 58907644, 'crop_x': 0, 'crop_y': 0, 'crop_x2':795, 'crop_y2':200, 'v':5.65}
-    # 'access_token': None, 'captcha_sid': None, 'captcha_key': None
-    address = vk_api.VkApi.method(vk_session,'photos.getOwnerCoverPhotoUploadServer',request)
-    print (address)
     upload = vk_api.VkUpload(vk_session)
+    cover = upload.group_cover('gurren.jpg', 58907644)
 
-    # photo = upload.photo_profile( 'gurren.jpg',-58907644)
-    crop_params = {}
-    crop_params['_square_crop'] = '{},{},{}'.format(0, 0, 790)
+    
+    """group cover changer  method for vk_api method upload"""
+    # def group_cover(self, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
+    #     values = {}
+    #
+    #     if group_id:
+    #         values['group_id'] = group_id
+    #
+    #     crop_params = {}
+    #
+    #     if crop_x is not None and crop_y is not None and crop_width is not None:
+    #         crop_params['_square_crop'] = '{},{},{}'.format(
+    #             crop_x, crop_y, crop_width
+    #         )
+    #
+    #     response = self.vk.method('photos.getOwnerCoverPhotoUploadServer', values)
+    #     url = response['upload_url']
+    #
+    #     photo_files = open_files(photo, key_format='file')
+    #     response = self.vk.http.post(url, data=crop_params, files=photo_files)
+    #     close_files(photo_files)
+    #
+    #     response = self.vk.method('photos.getOwnerCoverPhotoUploadServer', response.json())
+    #
+    #     return response
 
-    def open_files(paths, key_format='file{}'):
-        if not isinstance(paths, list):
-            paths = [paths]
 
-        files = []
-
-        for x, file in enumerate(paths):
-            if hasattr(file, 'read'):
-                f = file
-
-                if hasattr(file, 'name'):
-                    filename = file.name
-                else:
-                    filename = '.jpg'
-            else:
-                filename = file
-                f = open(filename, 'rb')
-
-            ext = filename.split('.')[-1]
-            files.append(
-                (key_format.format(x), ('file{}.{}'.format(x, ext), f))
-            )
-
-        return files
-    def close_files(files):
-        for f in files:
-            f[1][1].close()
-
-    photo_file = open_files('gurren.jpg', key_format='file')
-    response = upload.vk.http.post(address['upload_url'], data=crop_params, files=photo_file)
-    print (response)
-    close_files(photo_file)
 
 
 if __name__ == '__main__':
