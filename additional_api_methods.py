@@ -56,6 +56,7 @@ def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_wi
     return response
 # получаем последнего подписчика (дает нам имя,фамилию, фото_50, айди вот пример {'items': [{'first_name': 'Valya', 'last_name': 'Lis', 'photo_50': 'https://pp.userapi.com/c638425/v638425274/41ebb/8XIHNS9jVVI.jpg', 'id': 418868274}], 'count': 19})
 def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, fields='photo_50'):
+    ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
     values ={}
     values['group_id'] = group_id
     values['sort'] = sort
@@ -64,7 +65,6 @@ def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, f
     values['fields'] = fields
     response = session.vk.method('groups.getMembers', values)
     return response
-
 # загружает изображение, называет его img, на вход принимает ссылку
 def download_image(url):
     img = urllib.request.urlopen(url).read()

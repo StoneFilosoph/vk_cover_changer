@@ -5,56 +5,28 @@ import config
 
 
 def main():
-
-
-
+    # задаём логин и пароль для нашей сессии
     login, password = config.login, config.password
     vk_session = vk_api.VkApi(login, password)
-
+    #пробуем авторизоваться
     try:
         vk_session.auth()
     except vk_api.AuthError as error_msg:
         print(error_msg)
         return
 
-    """ В VkUpload реализованы методы загрузки файлов в ВК
-    """
+    # готовим наш объект api_use чтобы передавать его в методы для использования api
     api_use = vk_api.VkUpload(vk_session)
-    # cover = group_cover(api_use, 'gurren.jpg', 58907644)
+
+    # получаем последнего подписчика группы
     response = get_last_subscriber(api_use, 58907644)
     # выдергиваем фото_50 из последнего субскрайбера
     photo_of_last_subscriber = response['items'][0]['photo_50']
     download_image(photo_of_last_subscriber)
-
-
-
-    ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
-
-    """group cover changer  method for vk_api class VkUpload"""
-    # def group_cover(self, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
-    #     values = {}
-    #
-    #     if group_id:
-    #         values['group_id'] = group_id
-    #
-    #     crop_params = {}
-    #
-    #     if crop_x is not None and crop_y is not None and crop_width is not None:
-    #         crop_params['_square_crop'] = '{},{},{}'.format(
-    #             crop_x, crop_y, crop_width
-    #         )
-    #
-    #     response = self.vk.method('photos.getOwnerCoverPhotoUploadServer', values)
-    #     url = response['upload_url']
-    #
-    #     photo_files = open_files(photo, key_format='file')
-    #     response = self.vk.http.post(url, data=crop_params, files=photo_files)
-    #     close_files(photo_files)
-    #
-    #     response = self.vk.method('photos.getOwnerCoverPhotoUploadServer', response.json())
-    #
-    #     return response
-
+    # готовим картинку компонуем полученную картинку и заготовленную
+    image_processor()
+    # загружаем готовую картинку в сообщество
+    cover = group_cover(api_use, 'gurren.jpg', 58907644)
 
 def image_processor():
     image1 = Image.new('RGB',(500, 500))
