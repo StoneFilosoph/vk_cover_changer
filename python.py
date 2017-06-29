@@ -85,3 +85,5 @@ mask – An optional mask image."""
 if __name__ == '__main__':
     image_processor()
     # main()
+
+pass
