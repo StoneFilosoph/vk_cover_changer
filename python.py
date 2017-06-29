@@ -1,12 +1,13 @@
 import vk_api
 from PIL import Image
+from additional_api_methods import group_cover, get_last_subscriber
 
 
 def main():
 
 
 
-    login, password = 'login', 'pass'
+    login, password = 'podsosnowmonster@bk.ru', 'www314159vk'
     vk_session = vk_api.VkApi(login, password)
 
     try:
@@ -17,8 +18,10 @@ def main():
 
     """ В VkUpload реализованы методы загрузки файлов в ВК
     """
-    upload = vk_api.VkUpload(vk_session)
-    cover = upload.group_cover('gurren.jpg', 58907644)
+    api_use = vk_api.VkUpload(vk_session)
+    cover = group_cover(api_use, 'gurren.jpg', 58907644)
+    get_last_subscriber(api_use, 58907644)
+
 
     ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
 
@@ -53,6 +56,7 @@ def image_processor():
     image2 = Image.new('RGB', (100, 100), 156)
     image1.paste(image2)
     image1.show()
+
     """"
     Pastes another image into this image. The box argument is either a 2-tuple giving the upper left corner, a 4-tuple 
     defining the left, upper, right, and lower pixel coordinate, or None (same as (0, 0)). If a 4-tuple is given, the 
@@ -83,5 +87,6 @@ mask – An optional mask image."""
 
 
 if __name__ == '__main__':
-    image_processor()
-    # main()
+
+    # # image_processor()
+    #  main()
