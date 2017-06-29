@@ -1,13 +1,14 @@
 import vk_api
 from PIL import Image
-from additional_api_methods import group_cover, get_last_subscriber
+from additional_api_methods import group_cover, get_last_subscriber, download_image
+import config
 
 
 def main():
 
 
 
-    login, password = 'podsosnowmonster@bk.ru', 'www314159vk'
+    login, password = config.login, config.password
     vk_session = vk_api.VkApi(login, password)
 
     try:
@@ -19,8 +20,12 @@ def main():
     """ В VkUpload реализованы методы загрузки файлов в ВК
     """
     api_use = vk_api.VkUpload(vk_session)
-    cover = group_cover(api_use, 'gurren.jpg', 58907644)
-    get_last_subscriber(api_use, 58907644)
+    # cover = group_cover(api_use, 'gurren.jpg', 58907644)
+    response = get_last_subscriber(api_use, 58907644)
+    # выдергиваем фото_50 из последнего субскрайбера
+    photo_of_last_subscriber = response['items'][0]['photo_50']
+    download_image(photo_of_last_subscriber)
+
 
 
     ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
@@ -87,13 +92,5 @@ mask – An optional mask image."""
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-
-    # # image_processor()
-    #  main()
-=======
-    image_processor()
-    # main()
-
-pass
->>>>>>> df4e4c9e3531d329c239218b85c8d79edc2ebd13
+    # image_processor()
+    main()

@@ -1,4 +1,5 @@
 from vk_api import upload
+import urllib.request
 # метод открытия файла для передачи фото
 def open_files(paths, key_format='file{}'):
     if not isinstance(paths, list):
@@ -53,7 +54,7 @@ def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_wi
     response = session.vk.method('photos.getOwnerCoverPhotoUploadServer', response.json())
 
     return response
-
+# получаем последнего подписчика (дает нам имя,фамилию, фото_50, айди вот пример {'items': [{'first_name': 'Valya', 'last_name': 'Lis', 'photo_50': 'https://pp.userapi.com/c638425/v638425274/41ebb/8XIHNS9jVVI.jpg', 'id': 418868274}], 'count': 19})
 def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, fields='photo_50'):
     values ={}
     values['group_id'] = group_id
@@ -62,4 +63,12 @@ def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, f
     values['count'] = count
     values['fields'] = fields
     response = session.vk.method('groups.getMembers', values)
-    print(response)
+    return response
+
+# загружает изображение, называет его img, на вход принимает ссылку
+def download_image(url):
+    img = urllib.request.urlopen(url).read()
+    out = open("img.jpg", "wb")
+    out.write(img)
+    out.close()
+
