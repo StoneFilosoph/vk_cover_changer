@@ -32,6 +32,16 @@ def close_files(files):
         f[1][1].close()
 # метод для загрузки обложки сообщества
 def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
+    """загружаем обложку группы в нужную группу
+    
+    :param session: передача сессии
+    :param photo: относительный путь до файла фото
+    :param group_id: айди группы (требуется api ключ группы)
+    :param crop_x: координаты для обрезания по х
+    :param crop_y: координаты для обрезания по у
+    :param crop_width: 
+    :return: вовзращает ответ от сервера, такде выгружает в джейсон
+    """
     values = {}
 
     if group_id:
@@ -56,7 +66,17 @@ def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_wi
     return response
 # получаем последнего подписчика (дает нам имя,фамилию, фото_50, айди вот пример {'items': [{'first_name': 'Valya', 'last_name': 'Lis', 'photo_50': 'https://pp.userapi.com/c638425/v638425274/41ebb/8XIHNS9jVVI.jpg', 'id': 418868274}], 'count': 19})
 def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, fields='photo_50'):
-    ''' ссылка на метод для получения последнего подписчика https://vk.com/dev/groups.getMembers'''
+    """получение последнего подписчика группы
+    
+    :param session: передача сессии для использованеия api
+    :param group_id: айли группы подписчика которой получить
+    :param sort: метод сортировки по умолчанию последний подписчик
+    :param offset: выборка по умолчанию 0
+    :param count: количество возвращаемых подписчиков
+    :param fields: поля которые нужны, по умолчанию photo_50 можно сюда вписывать любые поля.из меторда groups.getMembers 
+    апи вконтакте
+    :return: возвращает ответ сервера с  урл фото
+    """
     values ={}
     values['group_id'] = group_id
     values['sort'] = sort
@@ -67,7 +87,12 @@ def get_last_subscriber(session, group_id, sort='time_desc', offset=0,count=1, f
     return response
 # загружает изображение, называет его img, на вход принимает ссылку
 def download_image(url):
+    """Функция для загрузки фото по урл
+    :param url: урл фото для загрузки
+    :return: ничего не возвращает
+    """
     img = urllib.request.urlopen(url).read()
+    # фото будет называться img.jpg
     out = open("img.jpg", "wb")
     out.write(img)
     out.close()
