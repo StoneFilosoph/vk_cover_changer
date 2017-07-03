@@ -21,7 +21,7 @@ def main():
     # получаем последнего подписчика группы
     response = get_last_subscriber(api_use, 58907644)
     # выдергиваем фото_50 из последнего субскрайбера
-    photo_of_last_subscriber = response['items'][0]['photo_50']
+    photo_of_last_subscriber = response['items'][0]['photo_100']
     download_image(photo_of_last_subscriber)
     # готовим картинку компонуем полученную картинку и заготовленную
     image_processor()
