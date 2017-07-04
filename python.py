@@ -1,7 +1,7 @@
 import vk_api
 from PIL import Image
 from additional_api_methods import group_cover, get_last_subscriber, download_image
-import config
+# import config
 
 
 def main():
@@ -64,5 +64,5 @@ mask – An optional mask image."""
 
 
 if __name__ == '__main__':
-    # image_processor()
-    main()
+    image_processor()
+    # main()
