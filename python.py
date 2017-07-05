@@ -1,7 +1,7 @@
 import vk_api
 from PIL import Image, ImageOps, ImageDraw
 from additional_api_methods import group_cover, get_last_subscriber, download_image
-# import config
+import config
 
 
 def main():
@@ -22,11 +22,14 @@ def main():
     response = get_last_subscriber(api_use, 58907644)
     # выдергиваем фото_50 из последнего субскрайбера
     photo_of_last_subscriber = response['items'][0]['photo_100']
+    first_name_subscriber = response['items'][0]['first_name']
+    last_name_subscriber = response['items'][0]['last_name']
+    print(first_name_subscriber, last_name_subscriber)
     download_image(photo_of_last_subscriber)
     # готовим картинку компонуем полученную картинку и заготовленную
-    image_processor()
+    output_cover = image_processor(500, 50, 'cover_image.jpg', 'avatar.jpg')
     # загружаем готовую картинку в сообщество
-    cover = group_cover(api_use, 'gurren.jpg', 58907644)
+    # cover = group_cover(api_use, output_cover, 58907644)
 
 def image_processor(x, y, base_image, embedded_image):
     size = (100, 100)  #размер аватарки
@@ -42,8 +45,10 @@ def image_processor(x, y, base_image, embedded_image):
     image2 = ImageOps.fit(image2, mask.size, centering=(0.5, 0.5))
     result_image = image1.copy()
     result_image.paste(image2, (x, y), mask=mask)
+    result_image.show()
+    result_image.save('output_cover.jpg')
     return result_image
 
 if __name__ == '__main__':
-    image_processor()
-    # main()
+    # image_processor()
+    main()
