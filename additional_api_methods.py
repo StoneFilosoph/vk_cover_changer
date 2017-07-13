@@ -33,9 +33,7 @@ def close_files(files):
 # метод для загрузки обложки сообщества
 def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_width=None):
     values = {}
-
-    if group_id:
-        values['group_id'] = group_id
+    values['group_id'] = group_id
 
     crop_params = {}
 
@@ -44,14 +42,20 @@ def group_cover(session, photo, group_id=None, crop_x=None, crop_y=None, crop_wi
             crop_x, crop_y, crop_width
         )
 
-    response = session.vk.method('photos.getOwnerCoverPhotoUploadServer', values)
-    url = response['upload_url']
-
+    print(values)
+    # получаем ссылку на загрузку
+    response = session.vk.method('photos.getOwnerCoverPhotoUploadServer', values)['upload_url']
+    print(response)
+    # откурываем файл в нужном виде
     photo_files = open_files(photo, key_format='file')
-    response = session.vk.http.post(url, data=crop_params, files=photo_files)
+    # загружаем на сервер
+    response = session.vk.http.post(response, data=crop_params, files=photo_files).json()
     close_files(photo_files)
+    print(response)
+    response['group_id'] = values['group_id']
+    # сохраняем с сервера в обложку
+    response = session.vk.method('photos.saveOwnerCoverPhoto', response)
 
-    response = session.vk.method('photos.getOwnerCoverPhotoUploadServer', response.json())
 
     return response
 # получаем последнего подписчика (дает нам имя,фамилию, фото_50, айди вот пример {'items': [{'first_name': 'Valya', 'last_name': 'Lis', 'photo_50': 'https://pp.userapi.com/c638425/v638425274/41ebb/8XIHNS9jVVI.jpg', 'id': 418868274}], 'count': 19})

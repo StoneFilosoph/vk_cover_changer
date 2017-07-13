@@ -19,7 +19,7 @@ def main():
     api_use = vk_api.VkUpload(vk_session)
 
     # получаем последнего подписчика группы
-    response = get_last_subscriber(api_use, 58907644)
+    response = get_last_subscriber(api_use, 43018984)
     # выдергиваем фото_50 из последнего субскрайбера
     photo_of_last_subscriber = response['items'][0]['photo_100']
     first_name_subscriber = response['items'][0]['first_name']
@@ -29,7 +29,7 @@ def main():
     # готовим картинку компонуем полученную картинку и заготовленную
     output_cover = image_processor(500, 50, 'cover_image.jpg', 'avatar.jpg')
     # загружаем готовую картинку в сообщество
-    # cover = group_cover(api_use, output_cover, 58907644)
+    cover = group_cover(api_use, 'output_cover.jpg', 43018984)
 
 def image_processor(x, y, base_image, embedded_image):
     size = (100, 100)  #размер аватарки
